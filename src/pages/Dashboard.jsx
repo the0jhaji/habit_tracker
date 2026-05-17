@@ -15,6 +15,7 @@ export default function Dashboard() {
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [toggling, setToggling] = useState(null);
+  const [togglingCell, setTogglingCell] = useState(null);
   const date = today();
 
   const load = useCallback(async () => {
@@ -43,11 +44,15 @@ export default function Dashboard() {
   }, [load]);
 
   const toggleHeatmapCell = async (habitId, cellDate, currentVal) => {
+    const key = `${habitId}-${cellDate}`;
+    setTogglingCell(key);
     try {
       await api.toggleHabit(habitId, cellDate);
-      load();
+      await load();
     } catch (err) {
       console.error('Heatmap toggle failed:', err);
+    } finally {
+      setTogglingCell(null);
     }
   };
 
@@ -55,7 +60,7 @@ export default function Dashboard() {
     setToggling(id);
     try {
       await api.toggleHabit(id, date);
-      setHabits(prev => prev.map(h => h.id === id ? { ...h, done: h.done ? 0 : 1 } : h));
+      await load();
     } catch (err) {
       console.error('Toggle failed:', err);
     } finally {
