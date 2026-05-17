@@ -115,6 +115,8 @@ html.dark {
   --color-on-surface-variant: #c1c8c1;
   --color-outline: #8c938d;
   --color-outline-variant: #424843;
+  --color-secondary-container: #23382c;
+  --color-on-secondary-container: #ccead6;
 }
 
 /* Ocean Blue theme overrides */

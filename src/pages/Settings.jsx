@@ -43,8 +43,38 @@ export default function Settings() {
     };
   });
 
+  const [profile, setProfile] = useState(() => {
+    const saved = localStorage.getItem('daycount-profile');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {}
+    }
+    return {
+      name: 'Adarsh',
+      email: 'adarsh@example.com',
+    };
+  });
+
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [editName, setEditName] = useState(profile.name);
+  const [editEmail, setEditEmail] = useState(profile.email);
+
   const [resetting, setResetting] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
+
+  const handleSaveProfile = () => {
+    if (!editName.trim()) {
+      alert('Name cannot be empty!');
+      return;
+    }
+    const newProfile = { name: editName.trim(), email: editEmail.trim() };
+    setProfile(newProfile);
+    localStorage.setItem('daycount-profile', JSON.stringify(newProfile));
+    setIsEditingProfile(false);
+    setSuccessMsg('Profile updated successfully.');
+    setTimeout(() => setSuccessMsg(''), 2000);
+  };
 
   // Persist settings & apply styles
   useEffect(() => {
@@ -155,17 +185,75 @@ export default function Settings() {
       )}
 
       {/* Profile Card */}
-      <div className="bg-secondary-container rounded-xl p-6 mb-6 flex items-center gap-5">
-        <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-on-primary text-2xl font-bold select-none">A</div>
-        <div className="flex-1">
-          <div className="text-lg font-bold text-on-surface">Adarsh</div>
-          <div className="text-sm text-on-surface-variant">adarsh@example.com</div>
-          <div className="flex items-center gap-2 mt-1">
-            <span className="material-symbols-outlined text-[14px] text-primary" style={{fontVariationSettings:"'FILL' 1"}}>local_fire_department</span>
-            <span className="text-xs text-primary font-semibold">Tracked habits streak active</span>
-          </div>
+      <div className="bg-secondary-container text-on-secondary-container rounded-xl p-6 mb-6 flex flex-col sm:flex-row sm:items-center gap-5">
+        <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-on-primary text-2xl font-bold select-none flex-shrink-0">
+          {profile.name ? profile.name[0].toUpperCase() : 'A'}
         </div>
-        <button className="text-sm font-medium text-primary hover:underline">Edit</button>
+        
+        {isEditingProfile ? (
+          <div className="flex-1 flex flex-col gap-3">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-bold uppercase tracking-wider text-on-secondary-container/70">Name</label>
+              <input
+                type="text"
+                value={editName}
+                onChange={e => setEditName(e.target.value)}
+                className="w-full max-w-xs text-sm bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-3 py-2 text-on-surface focus:outline-none focus:border-primary"
+                placeholder="Enter name"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-bold uppercase tracking-wider text-on-secondary-container/70">Email Address</label>
+              <input
+                type="email"
+                value={editEmail}
+                onChange={e => setEditEmail(e.target.value)}
+                className="w-full max-w-xs text-sm bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-3 py-2 text-on-surface focus:outline-none focus:border-primary"
+                placeholder="Enter email"
+              />
+            </div>
+            <div className="flex gap-2 mt-2">
+              <button
+                onClick={handleSaveProfile}
+                className="bg-primary text-on-primary px-4 py-1.5 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity active:scale-95 duration-100 cursor-pointer"
+              >
+                Save
+              </button>
+              <button
+                onClick={() => {
+                  setEditName(profile.name);
+                  setEditEmail(profile.email);
+                  setIsEditingProfile(false);
+                }}
+                className="bg-surface-container border border-outline-variant/30 text-on-surface px-4 py-1.5 rounded-lg text-xs font-semibold hover:bg-surface-container-high transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="flex-1">
+            <div className="text-lg font-bold">{profile.name}</div>
+            <div className="text-sm text-on-secondary-container/80">{profile.email}</div>
+            <div className="flex items-center gap-2 mt-2">
+              <span className="material-symbols-outlined text-[14px] text-primary" style={{fontVariationSettings:"'FILL' 1"}}>local_fire_department</span>
+              <span className="text-xs text-primary font-semibold">Tracked habits streak active</span>
+            </div>
+          </div>
+        )}
+        
+        {!isEditingProfile && (
+          <button
+            onClick={() => {
+              setEditName(profile.name);
+              setEditEmail(profile.email);
+              setIsEditingProfile(true);
+            }}
+            className="text-sm font-medium text-primary hover:underline self-end sm:self-center cursor-pointer"
+          >
+            Edit
+          </button>
+        )}
       </div>
 
       <Section title="Notifications">
