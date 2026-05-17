@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Habit Catalog - Serene Habits</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fbf9f7",
+                    "on-background": "#1b1c1b",
+                    "surface": "#fbf9f7",
+                    "inverse-on-surface": "#f2f0ee",
+                    "surface-container": "#efedec",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#3f4945",
+                    "on-primary-fixed": "#002111",
+                    "on-secondary-fixed": "#062014",
+                    "secondary-fixed": "#ccead6",
+                    "tertiary-fixed": "#dbe5df",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1b1c1b",
+                    "primary-fixed": "#c5ecd1",
+                    "surface-container-highest": "#e4e2e0",
+                    "surface-bright": "#fbf9f7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#2b4e3a",
+                    "on-error-container": "#93000a",
+                    "outline": "#727973",
+                    "surface-tint": "#436651",
+                    "tertiary-fixed-dim": "#bfc9c3",
+                    "on-secondary-fixed-variant": "#324c3e",
+                    "secondary-fixed-dim": "#b0cdbb",
+                    "surface-dim": "#dbdad8",
+                    "inverse-surface": "#30302f",
+                    "inverse-primary": "#a9d0b6",
+                    "surface-variant": "#e4e2e0",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#a9d0b6",
+                    "primary-container": "#7ca189",
+                    "surface-container-high": "#eae8e6",
+                    "surface-container-low": "#f5f3f1",
+                    "tertiary": "#57615c",
+                    "on-tertiary-container": "#2a332f",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#919b96",
+                    "on-primary-container": "#143725",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#496455",
+                    "on-surface-variant": "#424843",
+                    "on-tertiary-fixed": "#151d1a",
+                    "secondary-container": "#ccead6",
+                    "outline-variant": "#c1c8c1",
+                    "on-secondary-container": "#4f6a5b",
+                    "primary": "#436651"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "section-gap": "32px",
+                    "gutter": "16px",
+                    "container-padding-desktop": "40px",
+                    "container-padding-mobile": "20px"
+            },
+            "fontFamily": {
+                    "body-md": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "display": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fbf9f7;
+            color: #1b1c1b;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .habit-card-shadow {
+            box-shadow: 0px 4px 20px rgba(45, 71, 57, 0.05);
+        }
+    </style>
+</head>
+<body class="font-body-md bg-background text-on-background">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface shadow-sm px-container-padding-desktop py-4 flex justify-between items-center h-16 md:h-20">
+<div class="flex items-center gap-8">
+<h1 class="font-display text-headline-md text-primary">Serene Habits</h1>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant hover:bg-surface-container-low transition-colors px-3 py-2 rounded-xl font-label-md" href="#">Dashboard</a>
+<a class="text-primary font-bold px-3 py-2 rounded-xl font-label-md" href="#">Habit Catalog</a>
+<a class="text-on-surface-variant hover:bg-surface-container-low transition-colors px-3 py-2 rounded-xl font-label-md" href="#">Analytics</a>
+<a class="text-on-surface-variant hover:bg-surface-container-low transition-colors px-3 py-2 rounded-xl font-label-md" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors">notifications</button>
+<div class="w-10 h-10 rounded-full bg-secondary-container overflow-hidden">
+<img alt="User profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd_ksCga8ypGqZAkiNRuZsWXqySNJZNfqi_TMEHUvztaacv8ZHg-sK8ydbi3o4fI-snLcL29-B1dk37J-ng_KCmeCtpvbR37VQwGQm1EDsRDrjtY6Bf7qt76Ti_L_EQXn_VeHzfQS_IQKfLdRp3XkfCs5YYduF68qrZ42BBqDByh6ecsV0yaXWmwddOohWtaDlB7ZHgNSRjrPp5O1r17GHIPocxmhGGNf6DwJxLfNUAYOqrV0-XRLWTuzOOoEiBbsXWmdJgHggEkY"/>
+</div>
+<button class="hidden md:block bg-primary-container text-on-primary px-6 py-2 rounded-full font-label-md hover:opacity-90 active:scale-95 transition-all">
+                Add Habit
+            </button>
+</div>
+</header>
+<!-- Side Navigation (Desktop Only) -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low hidden md:flex flex-col p-gutter gap-4 border-r border-outline-variant pt-24">
+<div class="mb-8 px-4">
+<h2 class="font-display text-headline-md text-primary">Serene Habits</h2>
+<p class="text-label-md text-on-surface-variant">Stay Grounded</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-xl" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-md">Habit Catalog</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-4">
+<button class="w-full bg-primary-container text-on-primary py-3 rounded-xl font-label-md shadow-sm hover:opacity-90 active:scale-95 transition-all">
+                New Goal
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-20 md:pt-24 min-h-screen">
+<div class="max-w-[1200px] mx-auto px-container-padding-mobile md:px-container-padding-desktop py-section-gap">
+<!-- Header & Search -->
+<section class="mb-section-gap">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-xl">
+<h1 class="font-display text-headline-lg md:text-display text-on-background mb-4">Discover Better Daily Rhythms</h1>
+<p class="font-body-lg text-on-surface-variant">Explore a curated library of science-backed habits designed to cultivate peace, focus, and vitality in your life.</p>
+</div>
+</div>
+<!-- Search and Filter Bar -->
+<div class="mt-8 flex flex-col md:flex-row items-center gap-4">
+<div class="relative flex-1 w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-2xl border-tertiary-container bg-surface-container-lowest focus:ring-primary focus:border-primary font-body-md transition-all outline-none border border-opacity-30" placeholder="Search habits (e.g. 'morning', 'meditate')" type="text"/>
+</div>
+<div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 no-scrollbar">
+<button class="px-5 py-2.5 rounded-full bg-primary text-on-primary font-label-md shrink-0">All</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md shrink-0 hover:bg-secondary-container transition-colors">Mindfulness</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md shrink-0 hover:bg-secondary-container transition-colors">Health</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md shrink-0 hover:bg-secondary-container transition-colors">Productivity</button>
+</div>
+</div>
+</section>
+<!-- Categories Grid -->
+<div class="space-y-12">
+<!-- Category: Mindfulness -->
+<section>
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-xl bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">self_improvement</span>
+</div>
+<h2 class="font-headline-lg text-on-background">Mindfulness</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Habit Card 1 -->
+<div class="habit-card-shadow bg-surface-container-lowest p-6 rounded-[24px] border border-transparent hover:border-primary-fixed-dim transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">spa</span>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-container px-3 py-1 rounded-full text-label-sm">Easy</span>
+</div>
+<h3 class="font-headline-md text-on-surface mb-2">Morning Reflection</h3>
+<p class="text-body-md text-on-surface-variant mb-6">Spend 5 minutes writing down three things you are grateful for each morning.</p>
+<button class="w-full py-3 rounded-xl bg-primary text-on-primary font-label-md group-hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                                Add habit
+                            </button>
+</div>
+<!-- Habit Card 2 -->
+<div class="habit-card-shadow bg-surface-container-lowest p-6 rounded-[24px] border border-transparent hover:border-primary-fixed-dim transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">air</span>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-container px-3 py-1 rounded-full text-label-sm">Medium</span>
+</div>
+<h3 class="font-headline-md text-on-surface mb-2">Box Breathing</h3>
+<p class="text-body-md text-on-surface-variant mb-6">Four rounds of deep breathing to reset your nervous system during breaks.</p>
+<button class="w-full py-3 rounded-xl bg-primary text-on-primary font-label-md group-hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                                Add habit
+                            </button>
+</div>
+<!-- Habit Card 3 -->
+<div class="habit-card-shadow bg-surface-container-lowest p-6 rounded-[24px] border border-transparent hover:border-primary-fixed-dim transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">nature</span>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-container px-3 py-1 rounded-full text-label-sm">Medium</span>
+</div>
+<h3 class="font-headline-md text-on-surface mb-2">Tech-Free Walk</h3>
+<p class="text-body-md text-on-surface-variant mb-6">A 15-minute walk outside without your phone to reconnect with nature.</p>
+<button class="w-full py-3 rounded-xl bg-primary text-on-primary font-label-md group-hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                                Add habit
+                            </button>
+</div>
+</div>
+</section>
+<!-- Category: Health & Body -->
+<section>
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-xl bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">fitness_center</span>
+</div>
+<h2 class="font-headline-lg text-on-background">Health &amp; Vitality</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Habit Card 4 -->
+<div class="habit-card-shadow bg-surface-container-lowest p-6 rounded-[24px] border border-transparent hover:border-primary-fixed-dim transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">water_drop</span>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-container px-3 py-1 rounded-full text-label-sm">Easy</span>
+</div>
+<h3 class="font-headline-md text-on-surface mb-2">Hydrate First</h3>
+<p class="text-body-md text-on-surface-variant mb-6">Drink a full glass of water immediately after waking up before coffee.</p>
+<button class="w-full py-3 rounded-xl bg-primary text-on-primary font-label-md group-hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                                Add habit
+                            </button>
+</div>
+<!-- Habit Card 5 (Asymmetric Spotlight) -->
+<div class="habit-card-shadow bg-secondary-container p-6 rounded-[24px] md:col-span-2 lg:col-span-1 relative overflow-hidden group">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-surface">restaurant</span>
+</div>
+<span class="bg-on-secondary-container text-surface px-3 py-1 rounded-full text-label-sm">Hard</span>
+</div>
+<h3 class="font-headline-md text-on-secondary-container mb-2">Mindful Nutrition</h3>
+<p class="text-body-md text-on-secondary-container opacity-80 mb-6">Plan and prep your meals for the entire week every Sunday afternoon.</p>
+<button class="w-full py-3 rounded-xl bg-on-secondary-container text-surface font-label-md hover:opacity-90 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                                    Add habit
+                                </button>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px]">nutrition</span>
+</div>
+</div>
+<!-- Habit Card 6 -->
+<div class="habit-card-shadow bg-surface-container-lowest p-6 rounded-[24px] border border-transparent hover:border-primary-fixed-dim transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">bedtime</span>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-container px-3 py-1 rounded-full text-label-sm">Medium</span>
+</div>
+<h3 class="font-headline-md text-on-surface mb-2">Digital Sunset</h3>
+<p class="text-body-md text-on-surface-variant mb-6">No screens at least 60 minutes before your planned sleep time.</p>
+<button class="w-full py-3 rounded-xl bg-primary text-on-primary font-label-md group-hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                                Add habit
+                            </button>
+</div>
+</div>
+</section>
+<!-- Category: Productivity -->
+<section class="pb-24">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-xl bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">bolt</span>
+</div>
+<h2 class="font-headline-lg text-on-background">Productivity</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Habit Card 7 -->
+<div class="habit-card-shadow bg-surface-container-lowest p-6 rounded-[24px] border border-transparent hover:border-primary-fixed-dim transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">priority_high</span>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-container px-3 py-1 rounded-full text-label-sm">Medium</span>
+</div>
+<h3 class="font-headline-md text-on-surface mb-2">Eat the Frog</h3>
+<p class="text-body-md text-on-surface-variant mb-6">Identify and complete your most challenging task before any other work.</p>
+<button class="w-full py-3 rounded-xl bg-primary text-on-primary font-label-md group-hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                                Add habit
+                            </button>
+</div>
+<!-- Habit Card 8 -->
+<div class="habit-card-shadow bg-surface-container-lowest p-6 rounded-[24px] border border-transparent hover:border-primary-fixed-dim transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">timer</span>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-container px-3 py-1 rounded-full text-label-sm">Easy</span>
+</div>
+<h3 class="font-headline-md text-on-surface mb-2">Pomodoro Flow</h3>
+<p class="text-body-md text-on-surface-variant mb-6">Work in 25-minute sprints with mandatory 5-minute breaks in between.</p>
+<button class="w-full py-3 rounded-xl bg-primary text-on-primary font-label-md group-hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                                Add habit
+                            </button>
+</div>
+<!-- Habit Card 9 -->
+<div class="habit-card-shadow bg-surface-container-lowest p-6 rounded-[24px] border border-transparent hover:border-primary-fixed-dim transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-container px-3 py-1 rounded-full text-label-sm">Easy</span>
+</div>
+<h3 class="font-headline-md text-on-surface mb-2">Desktop Clear</h3>
+<p class="text-body-md text-on-surface-variant mb-6">Archive all downloads and clear your digital workspace at the end of every day.</p>
+<button class="w-full py-3 rounded-xl bg-primary text-on-primary font-label-md group-hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                                Add habit
+                            </button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface shadow-2xl flex justify-around items-center py-4 px-6 z-50">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined font-bold" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="text-label-sm font-bold">Catalog</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="text-label-sm">Stats</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-sm">Settings</span>
+</button>
+</nav>
+<!-- Empty State Background Decoration (Subtle Plant) -->
+<div class="fixed bottom-0 right-0 w-64 h-64 opacity-5 pointer-events-none select-none">
+<img class="w-full h-full object-contain" data-alt="A soft and minimalist botanical illustration of a single leafy plant branch. The lines are delicate and fluid, rendered in a muted sage green against a very pale cream background. The lighting is soft and even, evoking a peaceful morning atmosphere in a modern, airy room." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDerKtgzyXM2gz3vRax9si8dBk6YFgm97umyWH343DMIXBglvwAYNvEVgaF_asOo5gUwT9CH0FXnSvWK5wddw-Gk5Cl40-KhmN8Cg9FfnGVrDBIJ5ns92E3Di8rlXZDmkvt7k5PGQ727Xn8q3r5l6RlrNlJ0pRAa2pUC06fXumpQASy1nvCga9ZmsB92kwIsZaL01_3nWO4MGSu7ar-If1Ri2h5Qebulq09RC-eLkTYDNMLH-c3RyIlVsApMxII3psIOYKbCUFG06Y"/>
+</div>
+</body></html>

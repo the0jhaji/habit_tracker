@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #fbf9f7;
+  --color-on-background: #1b1c1b;
+  --color-surface: #fbf9f7;
+  --color-inverse-on-surface: #f2f0ee;
+  --color-surface-container: #efedec;
+  --color-on-primary: #ffffff;
+  --color-on-tertiary-fixed-variant: #3f4945;
+  --color-on-primary-fixed: #002111;
+  --color-on-secondary-fixed: #062014;
+  --color-secondary-fixed: #ccead6;
+  --color-tertiary-fixed: #dbe5df;
+  --color-error-container: #ffdad6;
+  --color-on-surface: #1b1c1b;
+  --color-primary-fixed: #c5ecd1;
+  --color-surface-container-highest: #e4e2e0;
+  --color-surface-bright: #fbf9f7;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-primary-fixed-variant: #2b4e3a;
+  --color-on-error-container: #93000a;
+  --color-outline: #727973;
+  --color-surface-tint: #436651;
+  --color-tertiary-fixed-dim: #bfc9c3;
+  --color-on-secondary-fixed-variant: #324c3e;
+  --color-secondary-fixed-dim: #b0cdbb;
+  --color-surface-dim: #dbdad8;
+  --color-inverse-surface: #30302f;
+  --color-inverse-primary: #a9d0b6;
+  --color-surface-variant: #e4e2e0;
+  --color-error: #ba1a1a;
+  --color-primary-fixed-dim: #a9d0b6;
+  --color-primary-container: #7ca189;
+  --color-surface-container-high: #eae8e6;
+  --color-surface-container-low: #f5f3f1;
+  --color-tertiary: #57615c;
+  --color-on-tertiary-container: #2a332f;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #919b96;
+  --color-on-primary-container: #143725;
+  --color-on-error: #ffffff;
+  --color-on-secondary: #ffffff;
+  --color-secondary: #496455;
+  --color-on-surface-variant: #424843;
+  --color-on-tertiary-fixed: #151d1a;
+  --color-secondary-container: #ccead6;
+  --color-outline-variant: #c1c8c1;
+  --color-on-secondary-container: #4f6a5b;
+  --color-primary: #436651;
+
+  --spacing-unit: 4px;
+  --spacing-section-gap: 32px;
+  --spacing-gutter: 16px;
+  --spacing-container-padding-desktop: 40px;
+  --spacing-container-padding-mobile: 20px;
+
+  --font-body-md: "Plus Jakarta Sans";
+  --font-label-sm: "Plus Jakarta Sans";
+  --font-headline-md: "Plus Jakarta Sans";
+  --font-display: "Plus Jakarta Sans";
+  --font-headline-lg: "Plus Jakarta Sans";
+  --font-headline-lg-mobile: "Plus Jakarta Sans";
+  --font-label-md: "Plus Jakarta Sans";
+  --font-body-lg: "Plus Jakarta Sans";
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-label-sm: 12px;
+  --text-label-sm--line-height: 16px;
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 32px;
+  --text-display: 40px;
+  --text-display--line-height: 48px;
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 40px;
+  --text-headline-lg-mobile: 24px;
+  --text-headline-lg-mobile--line-height: 32px;
+  --text-label-md: 14px;
+  --text-label-md--line-height: 20px;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+}
+
+body { 
+  background-color: var(--color-background); 
+  color: var(--color-on-background);
+  font-family: var(--font-body-md), sans-serif; 
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.material-symbols-outlined { 
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; 
+}
+
+.custom-card-shadow { 
+  box-shadow: 0px 4px 20px rgba(45, 71, 57, 0.05); 
+}
+
+.circular-progress { 
+  transform: rotate(-90deg); 
+  transition: stroke-dashoffset 0.5s ease; 
+}
+
+/* Dark Theme overrides */
+html.dark {
+  --color-background: #0f1110;
+  --color-on-background: #e1e3df;
+  --color-surface: #0f1110;
+  --color-surface-container: #1b1d1c;
+  --color-surface-container-low: #171918;
+  --color-surface-container-lowest: #0c0e0d;
+  --color-surface-container-high: #252827;
+  --color-on-surface: #e1e3df;
+  --color-on-surface-variant: #c1c8c1;
+  --color-outline: #8c938d;
+  --color-outline-variant: #424843;
+}
+
+/* Ocean Blue theme overrides */
+html[data-theme="Ocean Blue"] {
+  --color-primary: #3b6082;
+  --color-secondary: #535e6f;
+  --color-secondary-container: #d6e3f8;
+  --color-on-secondary-container: #3a4756;
+}
+
+html[data-theme="Ocean Blue"].dark {
+  --color-primary: #a3c9f1;
+  --color-secondary: #bbc7db;
+  --color-secondary-container: #3c4856;
+  --color-on-secondary-container: #d6e3f8;
+}
+
+/* Sunset Rose theme overrides */
+html[data-theme="Sunset Rose"] {
+  --color-primary: #954565;
+  --color-secondary: #745663;
+  --color-secondary-container: #ffd9e4;
+  --color-on-secondary-container: #5c3f4c;
+}
+
+html[data-theme="Sunset Rose"].dark {
+  --color-primary: #ffb1c8;
+  --color-secondary: #e2bdcb;
+  --color-secondary-container: #5c3f4c;
+  --color-on-secondary-container: #ffd9e4;
+}
+

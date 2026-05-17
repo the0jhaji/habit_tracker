@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Morning Meditation - Analytics | Serene Habits</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fbf9f7",
+                    "on-background": "#1b1c1b",
+                    "surface": "#fbf9f7",
+                    "inverse-on-surface": "#f2f0ee",
+                    "surface-container": "#efedec",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#3f4945",
+                    "on-primary-fixed": "#002111",
+                    "on-secondary-fixed": "#062014",
+                    "secondary-fixed": "#ccead6",
+                    "tertiary-fixed": "#dbe5df",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1b1c1b",
+                    "primary-fixed": "#c5ecd1",
+                    "surface-container-highest": "#e4e2e0",
+                    "surface-bright": "#fbf9f7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#2b4e3a",
+                    "on-error-container": "#93000a",
+                    "outline": "#727973",
+                    "surface-tint": "#436651",
+                    "tertiary-fixed-dim": "#bfc9c3",
+                    "on-secondary-fixed-variant": "#324c3e",
+                    "secondary-fixed-dim": "#b0cdbb",
+                    "surface-dim": "#dbdad8",
+                    "inverse-surface": "#30302f",
+                    "inverse-primary": "#a9d0b6",
+                    "surface-variant": "#e4e2e0",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#a9d0b6",
+                    "primary-container": "#7ca189",
+                    "surface-container-high": "#eae8e6",
+                    "surface-container-low": "#f5f3f1",
+                    "tertiary": "#57615c",
+                    "on-tertiary-container": "#2a332f",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#919b96",
+                    "on-primary-container": "#143725",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#496455",
+                    "on-surface-variant": "#424843",
+                    "on-tertiary-fixed": "#151d1a",
+                    "secondary-container": "#ccead6",
+                    "outline-variant": "#c1c8c1",
+                    "on-secondary-container": "#4f6a5b",
+                    "primary": "#436651"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "section-gap": "32px",
+                    "gutter": "16px",
+                    "container-padding-desktop": "40px",
+                    "container-padding-mobile": "20px"
+            },
+            "fontFamily": {
+                    "body-md": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "display": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(53, 1fr);
+            gap: 3px;
+        }
+        .heatmap-cell {
+            aspect-ratio: 1/1;
+            border-radius: 2px;
+        }
+        .custom-shadow {
+            box-shadow: 0px 4px 20px rgba(45, 71, 57, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- Side Navigation Shell -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-gutter gap-4 border-r border-outline-variant dark:border-outline bg-surface-container-low dark:bg-surface-container-lowest w-64 hidden md:flex z-50">
+<div class="flex items-center gap-3 mb-6 px-4">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+<div>
+<h2 class="font-display text-headline-md text-primary dark:text-primary-fixed leading-none">Serene Habits</h2>
+<p class="font-label-md text-label-sm text-on-surface-variant">Stay Grounded</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary hover:bg-surface-container-high transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary hover:bg-surface-container-high transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-md">Habit Catalog</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-xl" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="font-label-md font-bold">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary hover:bg-surface-container-high transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<button class="mt-auto bg-primary text-white py-4 rounded-xl font-label-md font-bold active:scale-95 transition-transform">
+            New Goal
+        </button>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 min-h-screen">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-full px-container-padding-mobile md:px-container-padding-desktop py-6 z-40 bg-surface">
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div>
+<nav class="flex items-center gap-2 mb-1">
+<span class="text-label-sm text-outline">Analytics</span>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="text-label-sm text-primary font-bold">Morning Meditation</span>
+</nav>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-on-background">Morning Meditation</h1>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-secondary-container text-on-secondary-container hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="font-label-md font-bold">Add Habit</span>
+</button>
+<div class="p-2 rounded-full hover:bg-surface-container-low cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</div>
+<img alt="User profile photo" class="w-10 h-10 rounded-full object-cover border-2 border-primary-fixed" data-alt="A professional close-up portrait of a serene-looking person with soft natural lighting, set against a blurred warm neutral background. The person has a gentle smile, embodying the calm and grounded aesthetic of a wellness app user. High quality, sharp focus, 8k resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBen8iOLbEHsiVJNSiU9UiCT7XHSjdD1nyDtYcCH6qBUegt9Fi6FJCjG0V44Tr9vuvCjDk4vBBMLXTer95QO7yBEfAIEFCB6Wjho0GQ1zY5VMc1V2UFiz2mRdH5oe2-2QiaOZ4vk5Tzx9oToI7UIFYp34dIWtu6LB4yesG90nq9xU0xfZGkKlYrY66diuHAWSq3zg2u-pEberlkoL8UAl3h2NzztAMJrlUBQ8IybumEWB-cwmW4YIOt5CNgPig4BsH3S6B8IetaPFw"/>
+</div>
+</header>
+<section class="px-container-padding-mobile md:px-container-padding-desktop pb-section-gap">
+<!-- Key Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-8">
+<div class="md:col-span-2 bg-surface-container-lowest p-6 rounded-[24px] custom-shadow flex flex-col justify-between border border-primary-fixed/20 relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-label-md text-on-surface-variant mb-1">Consistency Score</p>
+<h3 class="font-display text-display text-primary">94%</h3>
+<p class="text-label-sm text-primary-container font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                            +5% from last month
+                        </p>
+</div>
+<div class="absolute right-[-20px] bottom-[-20px] opacity-10">
+<span class="material-symbols-outlined text-[120px] text-primary">monitoring</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-[24px] custom-shadow border border-primary-fixed/10">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-secondary mb-4">
+<span class="material-symbols-outlined">local_fire_department</span>
+</div>
+<p class="text-label-md text-on-surface-variant">Current Streak</p>
+<h3 class="font-headline-lg text-on-surface">14 Days</h3>
+<p class="text-label-sm text-outline">Next milestone: 21 days</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-[24px] custom-shadow border border-primary-fixed/10">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary mb-4">
+<span class="material-symbols-outlined">military_tech</span>
+</div>
+<p class="text-label-md text-on-surface-variant">Best Streak</p>
+<h3 class="font-headline-lg text-on-surface">42 Days</h3>
+<p class="text-label-sm text-outline">Achieved Sept 2023</p>
+</div>
+</div>
+<!-- Heatmap Section -->
+<div class="bg-surface-container-lowest p-8 rounded-[32px] custom-shadow mb-8 border border-outline-variant/30">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h2 class="font-headline-md text-on-surface mb-1">Consistency Heatmap</h2>
+<p class="text-body-md text-on-surface-variant">Tracking your 12-month journey of mindful presence.</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-[2px] bg-surface-container-high"></span>
+<span class="text-label-sm text-outline">Less</span>
+<span class="w-3 h-3 rounded-[2px] bg-primary-fixed"></span>
+<span class="w-3 h-3 rounded-[2px] bg-primary-container"></span>
+<span class="w-3 h-3 rounded-[2px] bg-primary"></span>
+<span class="text-label-sm text-outline">More</span>
+</div>
+<div class="flex bg-surface-container-low p-1 rounded-lg">
+<button class="px-4 py-1.5 rounded-md bg-white text-label-md font-bold custom-shadow">2024</button>
+<button class="px-4 py-1.5 rounded-md text-label-md text-outline hover:text-on-surface">2023</button>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<div class="min-w-[800px]">
+<div class="flex text-label-sm text-outline mb-2 gap-[2%] px-4">
+<span class="w-[8%]">Jan</span><span class="w-[8%]">Feb</span><span class="w-[8%]">Mar</span>
+<span class="w-[8%]">Apr</span><span class="w-[8%]">May</span><span class="w-[8%]">Jun</span>
+<span class="w-[8%]">Jul</span><span class="w-[8%]">Aug</span><span class="w-[8%]">Sep</span>
+<span class="w-[8%]">Oct</span><span class="w-[8%]">Nov</span><span class="w-[8%]">Dec</span>
+</div>
+<div class="flex gap-2">
+<div class="flex flex-col justify-between py-1 text-[10px] text-outline h-32 uppercase font-bold">
+<span>Mon</span>
+<span>Wed</span>
+<span>Fri</span>
+</div>
+<div class="heatmap-grid flex-grow">
+<!-- Generating a representation of 53 weeks x 7 days -->
+<!-- We'll use a mix of primary and surface colors to simulate data -->
+<!-- 1st Row -->
+<div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary"></div>
+<!-- Repeating similar blocks for visual effect -->
+<div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary"></div>
+<!-- ... Repeat for 7 rows ... -->
+<div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary-container"></div><div class="heatmap-cell bg-surface-container-high"></div><div class="heatmap-cell bg-primary-fixed"></div><div class="heatmap-cell bg-primary"></div><div class="heatmap-cell bg-primary"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chart and Total Completions Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Line Chart -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-[32px] custom-shadow border border-outline-variant/30 flex flex-col">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="font-headline-md text-on-surface">Completion Rate Over Time</h2>
+<p class="text-label-md text-on-surface-variant">Daily adherence percentage per week.</p>
+</div>
+<select class="bg-surface border-none text-label-md text-on-surface-variant focus:ring-0 cursor-pointer rounded-lg px-4">
+<option>Last 6 Months</option>
+<option>Last Year</option>
+<option>All Time</option>
+</select>
+</div>
+<div class="flex-grow relative h-64 w-full">
+<!-- Simulated Chart Grid -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="border-b border-outline-variant/20 w-full h-0"></div>
+<div class="border-b border-outline-variant/20 w-full h-0"></div>
+<div class="border-b border-outline-variant/20 w-full h-0"></div>
+<div class="border-b border-outline-variant/20 w-full h-0"></div>
+<div class="border-b border-outline-variant/20 w-full h-0"></div>
+</div>
+<!-- SVG Line Chart Path (Simplified) -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 200">
+<defs>
+<lineargradient id="gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:rgba(67, 102, 81, 0.2); stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:rgba(67, 102, 81, 0); stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+<path d="M0,180 Q100,160 200,120 T400,100 T600,60 T800,80 T1000,40 V200 H0 Z" fill="url(#gradient)"></path>
+<path d="M0,180 Q100,160 200,120 T400,100 T600,60 T800,80 T1000,40" fill="none" stroke="#436651" stroke-linecap="round" stroke-width="4"></path>
+<!-- Dots for points -->
+<circle cx="200" cy="120" fill="#436651" r="6"></circle>
+<circle cx="400" cy="100" fill="#436651" r="6"></circle>
+<circle cx="600" cy="60" fill="#436651" r="6"></circle>
+<circle cx="800" cy="80" fill="#436651" r="6"></circle>
+<circle cx="1000" cy="40" fill="#436651" r="6"></circle>
+</svg>
+<div class="absolute bottom-[-24px] w-full flex justify-between text-label-sm text-outline px-2">
+<span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+</div>
+</div>
+</div>
+<!-- Total Completions & Insights -->
+<div class="bg-surface-container-lowest p-8 rounded-[32px] custom-shadow border border-outline-variant/30">
+<h2 class="font-headline-md text-on-surface mb-6">Summary</h2>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-primary-fixed/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Total Logged</p>
+<p class="font-headline-md text-on-surface">284 times</p>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary-fixed/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">timer</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Total Duration</p>
+<p class="font-headline-md text-on-surface">71 hours</p>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/30 pt-6 mt-6">
+<h4 class="font-label-md text-primary font-bold mb-3 uppercase tracking-wider">Mindful Insight</h4>
+<p class="text-body-md text-on-surface-variant italic leading-relaxed">
+                                "You are 15% more likely to complete this habit on Tuesday mornings after 8:00 AM. Keep up the great momentum!"
+                            </p>
+<button class="mt-6 w-full py-3 rounded-xl border border-primary text-primary font-label-md font-bold hover:bg-primary/5 transition-colors">
+                                Export History
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Mobile Navigation Shell -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface shadow-[0_-2px_10px_rgba(0,0,0,0.05)] flex justify-around items-center py-3 px-4 z-50">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-label-md">Explore</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="text-[10px] font-label-md font-bold">Stats</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-label-md">Settings</span>
+</a>
+</nav>
+</body></html>

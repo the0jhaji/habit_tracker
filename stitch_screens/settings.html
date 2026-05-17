@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fbf9f7",
+                    "on-background": "#1b1c1b",
+                    "surface": "#fbf9f7",
+                    "inverse-on-surface": "#f2f0ee",
+                    "surface-container": "#efedec",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#3f4945",
+                    "on-primary-fixed": "#002111",
+                    "on-secondary-fixed": "#062014",
+                    "secondary-fixed": "#ccead6",
+                    "tertiary-fixed": "#dbe5df",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1b1c1b",
+                    "primary-fixed": "#c5ecd1",
+                    "surface-container-highest": "#e4e2e0",
+                    "surface-bright": "#fbf9f7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#2b4e3a",
+                    "on-error-container": "#93000a",
+                    "outline": "#727973",
+                    "surface-tint": "#436651",
+                    "tertiary-fixed-dim": "#bfc9c3",
+                    "on-secondary-fixed-variant": "#324c3e",
+                    "secondary-fixed-dim": "#b0cdbb",
+                    "surface-dim": "#dbdad8",
+                    "inverse-surface": "#30302f",
+                    "inverse-primary": "#a9d0b6",
+                    "surface-variant": "#e4e2e0",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#a9d0b6",
+                    "primary-container": "#7ca189",
+                    "surface-container-high": "#eae8e6",
+                    "surface-container-low": "#f5f3f1",
+                    "tertiary": "#57615c",
+                    "on-tertiary-container": "#2a332f",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#919b96",
+                    "on-primary-container": "#143725",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#496455",
+                    "on-surface-variant": "#424843",
+                    "on-tertiary-fixed": "#151d1a",
+                    "secondary-container": "#ccead6",
+                    "outline-variant": "#c1c8c1",
+                    "on-secondary-container": "#4f6a5b",
+                    "primary": "#436651"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "section-gap": "32px",
+                    "gutter": "16px",
+                    "container-padding-desktop": "40px",
+                    "container-padding-mobile": "20px"
+            },
+            "fontFamily": {
+                    "body-md": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "display": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fbf9f7;
+            color: #1b1c1b;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .success-ring {
+            box-shadow: 0px 4px 20px rgba(45, 71, 57, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #efedec;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #7ca189;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface shadow-sm flex justify-between items-center w-full px-container-padding-desktop py-4 md:pl-72">
+<div class="flex items-center gap-4">
+<h1 class="font-display text-headline-md text-primary">Serene Habits</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-low transition-colors rounded-full" data-icon="notifications">notifications</button>
+<button class="bg-primary-container text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:opacity-90 transition-all active:scale-95 duration-200">Add Habit</button>
+<img alt="User profile photo" class="w-10 h-10 rounded-full object-cover border-2 border-primary-fixed" data-alt="A close-up portrait of a serene young woman with a gentle smile, set against a soft-focus natural background. The lighting is warm and diffused, creating a calm and mindful atmosphere. The image uses a palette of soft greens and earthy neutrals, perfectly aligning with a minimalist wellness aesthetic focused on personal growth and tranquility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7yn4YLdxOk15743U8weL4F4WaqmD42mZqf9gnU8_0lA-Bi-N2Ug4D-VObcYGzvPiWdZf0NXPXngXy-zeBA9hqTp_Lm3wX8ZuFeWU5xOplpdab5nHMvJD37VEd_rAaeG__i7FOOFA913s0ONkR-cQ7kv5XSmQ3A3RkVpj99mqRFIcLyvhVEbS8GZ72m0v0ymQMYDLV8mXxXPYYr4kVkdovDX4exw19GFUZwtjtteu3_G9VTlGNfbsUvQRUGbvxjiP8VlLUwKR3cmg"/>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full hidden md:flex flex-col p-gutter gap-4 border-r border-outline-variant bg-surface-container-low w-64 z-50">
+<div class="flex flex-col items-center py-6 mb-4">
+<div class="w-16 h-16 bg-primary-container rounded-2xl flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-on-primary text-3xl" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+<h2 class="font-display text-headline-md text-primary">Serene Habits</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Stay Grounded</p>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-primary rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-primary rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-md text-label-md">Habit Catalog</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-primary rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-xl font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<button class="mt-auto bg-primary text-on-primary px-4 py-3 rounded-xl font-label-md text-label-md flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+            New Goal
+        </button>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:pl-64 pt-24 min-h-screen">
+<div class="max-w-[1200px] mx-auto px-container-padding-mobile md:px-container-padding-desktop pb-section-gap">
+<header class="mb-section-gap">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-2">Settings</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Customize your mindful journey and manage your account.</p>
+</header>
+<div class="flex flex-col gap-8">
+<!-- Profile Section -->
+<section class="bg-surface-container-lowest rounded-xl p-6 success-ring">
+<h3 class="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">person</span>
+                        Profile
+                    </h3>
+<div class="flex flex-col md:flex-row items-center gap-8 border-b border-surface-container pb-8 mb-8">
+<div class="relative">
+<img alt="User avatar" class="w-24 h-24 rounded-full object-cover ring-4 ring-primary-fixed" data-alt="A high-quality studio portrait of a woman with a calm expression, softly lit by natural light coming from the side. The aesthetic is clean and minimalist, reflecting a wellness-oriented atmosphere. The background is a soft beige tone, complementing the serene green accents of the UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo-GtNZr1UQ-P5l2F_YMqxrtaiSlV2DEf2cCMwFHqXbiRvBZH4a2mQeOkiEZhFN3sK_nhxfMr4x4OURjhDn18HT6nebJbFSBBAB1QdXiRVZ_KwYbsBs7Bi5vgBsweAtQZM-2otJn31L_nDFsnGoZO2d6fbQVxBkjAYVRsggExFqYSrxR169fNFGNpV6zj3C2YHdnpAZ80a0KnqAwCDbuwVms1IPX9vg3GSHhvmUZqxmEG9-fFIH7EbiSYqaHMIV3CTr19V3-MoqkU"/>
+<button class="absolute bottom-0 right-0 bg-primary-container text-on-primary p-2 rounded-full shadow-sm hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+<div class="flex-grow grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Full Name</label>
+<input class="bg-surface-container-low border border-tertiary-mint rounded-lg px-4 py-2 focus:ring-1 focus:ring-primary focus:outline-none font-body-md text-body-md" type="text" value="Elena Rivers"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Email Address</label>
+<input class="bg-surface-container-low border border-tertiary-mint rounded-lg px-4 py-2 focus:ring-1 focus:ring-primary focus:outline-none font-body-md text-body-md" type="email" value="elena.rivers@serenity.com"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Notifications Section -->
+<section class="bg-surface-container-lowest rounded-xl p-6 success-ring">
+<h3 class="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">notifications_active</span>
+                        Notifications
+                    </h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between py-4 border-b border-surface-container last:border-0">
+<div>
+<h4 class="font-body-lg text-body-lg text-on-background">Daily Reminders</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">Get a gentle nudge to start your morning routine.</p>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+</div>
+<div class="flex items-center justify-between py-4 border-b border-surface-container last:border-0">
+<div>
+<h4 class="font-body-lg text-body-lg text-on-background">Streak Alerts</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">Notifications when you reach a milestone or are at risk of losing a streak.</p>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+</div>
+<div class="flex items-center justify-between py-4 border-b border-surface-container last:border-0">
+<div>
+<h4 class="font-body-lg text-body-lg text-on-background">Weekly Summary</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">A mindful review of your progress sent every Sunday.</p>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Theme Section -->
+<section class="bg-surface-container-lowest rounded-xl p-6 success-ring">
+<h3 class="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">palette</span>
+                        Appearance
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<label class="relative flex flex-col gap-3 cursor-pointer group">
+<input checked="" class="sr-only" name="theme" type="radio"/>
+<div class="w-full h-32 bg-background border-2 border-primary rounded-xl overflow-hidden p-2 ring-offset-2 ring-primary transition-all group-hover:opacity-80">
+<div class="w-full h-full bg-white rounded-lg shadow-sm p-2 flex flex-col gap-2">
+<div class="w-2/3 h-2 bg-surface-container-highest rounded"></div>
+<div class="w-full h-2 bg-surface-container-low rounded"></div>
+<div class="w-full h-2 bg-surface-container-low rounded"></div>
+</div>
+</div>
+<span class="font-label-md text-label-md text-center text-primary">Light Mode</span>
+<span class="material-symbols-outlined absolute top-2 right-2 text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</label>
+<label class="relative flex flex-col gap-3 cursor-pointer group">
+<input class="sr-only" name="theme" type="radio"/>
+<div class="w-full h-32 bg-inverse-surface border-2 border-transparent rounded-xl overflow-hidden p-2 transition-all group-hover:opacity-80">
+<div class="w-full h-full bg-[#30302f] rounded-lg shadow-sm p-2 flex flex-col gap-2">
+<div class="w-2/3 h-2 bg-outline rounded"></div>
+<div class="w-full h-2 bg-surface-container-highest opacity-20 rounded"></div>
+<div class="w-full h-2 bg-surface-container-highest opacity-20 rounded"></div>
+</div>
+</div>
+<span class="font-label-md text-label-md text-center text-on-surface-variant">Dark Mode</span>
+</label>
+</div>
+</section>
+<!-- Account Management Section -->
+<section class="bg-surface-container-lowest rounded-xl p-6 success-ring">
+<h3 class="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">manage_accounts</span>
+                        Account Management
+                    </h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between py-4 border-b border-surface-container last:border-0">
+<div>
+<h4 class="font-body-lg text-body-lg text-on-background">Subscription</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">Serene Habits Premium — $4.99 / month</p>
+</div>
+<button class="text-primary font-label-md text-label-md border border-primary px-4 py-2 rounded-lg hover:bg-surface-container-low transition-all">Manage</button>
+</div>
+<div class="flex items-center justify-between py-4 border-b border-surface-container last:border-0">
+<div>
+<h4 class="font-body-lg text-body-lg text-on-background">Password</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">Last changed 3 months ago</p>
+</div>
+<button class="text-primary font-label-md text-label-md border border-primary px-4 py-2 rounded-lg hover:bg-surface-container-low transition-all">Change</button>
+</div>
+<div class="flex items-center justify-between py-4 border-b border-surface-container last:border-0">
+<div>
+<h4 class="font-body-lg text-body-lg text-error">Deactivate Account</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">Temporarily disable your profile and habit data.</p>
+</div>
+<button class="text-error font-label-md text-label-md border border-error/20 px-4 py-2 rounded-lg hover:bg-error-container transition-all">Deactivate</button>
+</div>
+</div>
+</section>
+<div class="flex justify-end gap-4 mt-4">
+<button class="px-8 py-3 rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-all">Discard Changes</button>
+<button class="bg-primary px-8 py-3 rounded-full font-label-md text-label-md text-on-primary shadow-sm hover:opacity-90 active:scale-95 transition-all">Save Changes</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom NavBar (Suppressed on Desktop) -->
+<nav class="fixed bottom-0 left-0 right-0 bg-surface shadow-[0_-2px_10px_rgba(0,0,0,0.05)] flex md:hidden justify-around items-center py-3 z-50">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="text-[10px] font-label-sm">Catalog</span>
+</a>
+<div class="relative -top-6">
+<button class="bg-primary-container text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="text-[10px] font-label-sm">Stats</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-[10px] font-label-sm font-bold">Settings</span>
+</a>
+</nav>
+</body></html>
