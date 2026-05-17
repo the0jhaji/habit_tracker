@@ -167,9 +167,9 @@ export default function Dashboard() {
             {weeklyGrid && weeklyGrid.length > 0 && (
               <div className="border-t border-outline-variant/30 pt-6">
                 <h4 className="text-xs font-bold text-on-surface-variant mb-4 uppercase tracking-wider">Weekly Heatmap Track</h4>
-                <div className="flex flex-col gap-3">
-                  {/* Grid Header Days */}
-                  <div className="grid grid-cols-12 gap-2 items-center">
+                <div className="flex flex-col gap-4 md:gap-3">
+                  {/* Grid Header Days (Desktop only) */}
+                  <div className="hidden md:grid grid-cols-12 gap-2 items-center">
                     <div className="col-span-4 text-xs font-semibold text-on-surface-variant truncate">Habit</div>
                     <div className="col-span-8 grid grid-cols-7 gap-1.5 text-center text-xs font-bold text-on-surface-variant">
                       {weeklyData.map((d) => {
@@ -189,33 +189,50 @@ export default function Dashboard() {
                       return acc;
                     }, {})
                   ).map((h) => (
-                    <div key={h.id} className="grid grid-cols-12 gap-2 items-center">
-                      <div className="col-span-4 flex items-center gap-2 text-sm font-medium text-on-surface truncate">
-                        <div className="w-6 h-6 rounded-full bg-secondary-fixed-dim/30 flex items-center justify-center flex-shrink-0">
-                          <span className="material-symbols-outlined text-[14px] text-primary">{h.icon}</span>
+                    <div key={h.id} className="flex flex-col md:grid md:grid-cols-12 gap-2.5 md:gap-2 items-stretch md:items-center py-2 md:py-0 border-b border-outline-variant/10 md:border-none last:border-b-0">
+                      {/* Habit Info Row */}
+                      <div className="md:col-span-4 flex items-center justify-between md:justify-start gap-2 text-sm font-medium text-on-surface">
+                        <div className="flex items-center gap-2 truncate">
+                          <div className="w-6 h-6 rounded-full bg-secondary-fixed-dim/30 flex items-center justify-center flex-shrink-0">
+                            <span className="material-symbols-outlined text-[14px] text-primary">{h.icon}</span>
+                          </div>
+                          <span className="truncate">{h.name}</span>
                         </div>
-                        <span className="truncate">{h.name}</span>
+                        {/* Mobile-only done count */}
+                        <span className="md:hidden text-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full font-semibold">
+                          {h.cells.filter(c => c.completed).length}/7 done
+                        </span>
                       </div>
-                      <div className="col-span-8 grid grid-cols-7 gap-1.5">
-                        {h.cells.map((cell) => {
-                          const isCellToday = cell.log_date === date;
-                          return (
-                            <button
-                              key={cell.log_date}
-                              onClick={() => toggleHeatmapCell(cell.habit_id, cell.log_date, cell.completed)}
-                              title={`${h.name}: ${cell.completed ? 'Done' : 'Not done'} on ${cell.log_date}`}
-                              className={`aspect-square rounded-md transition-all duration-200 flex items-center justify-center cursor-pointer border ${
-                                cell.completed
-                                  ? 'bg-primary border-primary text-on-primary shadow-sm hover:opacity-90'
-                                  : 'bg-surface-container border-outline-variant/30 hover:bg-surface-container-high'
-                              } ${isCellToday ? 'ring-2 ring-primary ring-offset-2' : ''}`}
-                            >
-                              {cell.completed && (
-                                <span className="material-symbols-outlined text-[10px] font-bold">check</span>
-                              )}
-                            </button>
-                          );
-                        })}
+                      
+                      {/* 7 Days Tap Targets Grid */}
+                      <div className="md:col-span-8">
+                        <div className="grid grid-cols-7 gap-1.5">
+                          {h.cells.map((cell) => {
+                            const isCellToday = cell.log_date === date;
+                            const dayName = ['Su','M','Tu','W','Th','F','Sa'][new Date(cell.log_date).getDay()];
+                            return (
+                              <div key={cell.log_date} className="flex flex-col items-center gap-1">
+                                {/* Mobile-only Day indicators above buttons */}
+                                <span className="md:hidden text-[10px] font-bold text-on-surface-variant">{dayName}</span>
+                                <button
+                                  onClick={() => toggleHeatmapCell(cell.habit_id, cell.log_date, cell.completed)}
+                                  title={`${h.name}: ${cell.completed ? 'Done' : 'Not done'} on ${cell.log_date}`}
+                                  className={`w-full aspect-square rounded-lg transition-all duration-200 flex items-center justify-center cursor-pointer border ${
+                                    cell.completed
+                                      ? 'bg-primary border-primary text-on-primary shadow-sm hover:scale-95'
+                                      : 'bg-surface-container border-outline-variant/30 hover:bg-surface-container-high'
+                                  } ${isCellToday ? 'ring-2 ring-primary ring-offset-2' : ''}`}
+                                >
+                                  {cell.completed ? (
+                                    <span className="material-symbols-outlined text-[12px] md:text-[10px] font-bold">check</span>
+                                  ) : (
+                                    <span className="md:hidden text-[10px] text-on-surface-variant/20 font-bold">○</span>
+                                  )}
+                                </button>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
                   ))}
