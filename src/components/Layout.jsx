@@ -1,10 +1,46 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import AddHabitModal from './AddHabitModal';
 
 export default function Layout() {
   const location = useLocation();
   const [showAddModal, setShowAddModal] = useState(false);
+
+  // Apply dark mode & theme variables globally on mount and settings update
+  useEffect(() => {
+    const applyTheme = () => {
+      try {
+        const saved = localStorage.getItem('daycount-settings');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.darkMode) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+          if (parsed.theme && parsed.theme !== 'Serene Green') {
+            document.documentElement.setAttribute('data-theme', parsed.theme);
+          } else {
+            document.documentElement.removeAttribute('data-theme');
+          }
+        }
+      } catch (e) {
+        console.error('Failed to apply global settings theme:', e);
+      }
+    };
+
+    // Apply immediately
+    applyTheme();
+
+    // Listen to settings update events and storage events
+    window.addEventListener('settings-updated', applyTheme);
+    window.addEventListener('storage', applyTheme);
+
+    return () => {
+      window.removeEventListener('settings-updated', applyTheme);
+      window.removeEventListener('storage', applyTheme);
+    };
+  }, []);
 
   const navLinks = [
     { name: 'Dashboard', path: '/', icon: 'dashboard' },

@@ -7,6 +7,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <title>DayCount</title>
+    <script>
+      (function() {
+        try {
+          const saved = localStorage.getItem('daycount-settings');
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            if (parsed.darkMode) {
+              document.documentElement.classList.add('dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+            }
+            if (parsed.theme && parsed.theme !== 'Serene Green') {
+              document.documentElement.setAttribute('data-theme', parsed.theme);
+            } else {
+              document.documentElement.removeAttribute('data-theme');
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

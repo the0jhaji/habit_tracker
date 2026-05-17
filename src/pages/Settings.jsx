@@ -63,6 +63,9 @@ export default function Settings() {
     } else {
       document.documentElement.setAttribute('data-theme', settings.theme);
     }
+
+    // Dispatch global event so Layout is notified instantly
+    window.dispatchEvent(new Event('settings-updated'));
   }, [settings]);
 
   const set = (key, val) => setSettings(prev => ({ ...prev, [key]: val }));
