@@ -132,6 +132,24 @@ router.get('/', (req, res) => {
     };
   });
 
+  const weekly_grid = db.prepare(`
+    SELECT
+      h.id AS habit_id,
+      h.name AS habit_name,
+      h.icon AS habit_icon,
+      days.log_date,
+      COALESCE(l.completed, 0) AS completed
+    FROM (
+      WITH RECURSIVE cnt(n) AS (
+        SELECT 6 UNION ALL SELECT n-1 FROM cnt WHERE n > 0
+      )
+      SELECT date(?, '-' || n || ' days') AS log_date FROM cnt
+    ) days
+    CROSS JOIN habits h
+    LEFT JOIN habit_logs l ON l.log_date = days.log_date AND l.habit_id = h.id
+    ORDER BY h.id, days.log_date ASC
+  `).all(date);
+
   res.json({
     summary: {
       total_habits: total,
@@ -140,6 +158,7 @@ router.get('/', (req, res) => {
       completion_rate: rateRow?.rate || 0,
     },
     weekly,
+    weekly_grid,
     monthly,
     heatmap,
     habit_stats,

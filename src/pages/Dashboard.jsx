@@ -10,6 +10,7 @@ const DAY_IDS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 export default function Dashboard() {
   const [habits, setHabits] = useState([]);
   const [weeklyData, setWeeklyData] = useState([]);
+  const [weeklyGrid, setWeeklyGrid] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -24,6 +25,7 @@ export default function Dashboard() {
       ]);
       setHabits(habitsData);
       setWeeklyData(statsData.weekly || []);
+      setWeeklyGrid(statsData.weekly_grid || []);
       setError('');
     } catch (err) {
       setError('Could not connect to the server. Is the backend running?');
@@ -39,6 +41,15 @@ export default function Dashboard() {
     window.addEventListener('habit-added', handler);
     return () => window.removeEventListener('habit-added', handler);
   }, [load]);
+
+  const toggleHeatmapCell = async (habitId, cellDate, currentVal) => {
+    try {
+      await api.toggleHabit(habitId, cellDate);
+      load();
+    } catch (err) {
+      console.error('Heatmap toggle failed:', err);
+    }
+  };
 
   const toggleHabit = async (id) => {
     setToggling(id);
@@ -130,24 +141,87 @@ export default function Dashboard() {
               <h3 className="text-2xl font-semibold text-on-surface">Weekly Snapshot</h3>
               <span className="text-sm font-medium text-primary bg-secondary-container px-3 py-1 rounded-full">Last 7 days</span>
             </div>
-            <div className="flex justify-between items-end h-32 gap-2 px-2">
+            
+            {/* Bar chart trend */}
+            <div className="flex justify-between items-end h-28 gap-2 px-2 mb-6">
               {weeklyData.map((d, i) => {
                 const dayIdx = (new Date(d.log_date).getDay());
                 const pctVal = d.pct || 0;
                 const isToday = d.log_date === date;
                 return (
-                  <div key={DAY_IDS[i] || i} className="flex flex-col items-center gap-2 w-full">
+                  <div key={d.log_date || i} className="flex flex-col items-center gap-2 w-full">
+                    <span className={`text-[10px] font-bold ${isToday ? 'text-primary' : 'text-on-surface-variant'}`}>{pctVal}%</span>
                     <div
                       className={`w-full rounded-t-lg transition-all duration-500 ${isToday ? 'bg-primary' : pctVal > 0 ? 'bg-secondary-fixed-dim' : 'bg-surface-container'}`}
                       style={{ height: `${Math.max(pctVal, 4)}%` }}
                     />
                     <span className={`text-xs font-semibold ${isToday ? 'text-primary font-bold' : 'text-on-surface-variant'}`}>
-                      {DAYS[dayIdx]}
+                      {['Su','M','Tu','W','Th','F','Sa'][dayIdx]}
                     </span>
                   </div>
                 );
               })}
             </div>
+
+            {/* Weekly Snapshot Heatmap Grid */}
+            {weeklyGrid && weeklyGrid.length > 0 && (
+              <div className="border-t border-outline-variant/30 pt-6">
+                <h4 className="text-xs font-bold text-on-surface-variant mb-4 uppercase tracking-wider">Weekly Heatmap Track</h4>
+                <div className="flex flex-col gap-3">
+                  {/* Grid Header Days */}
+                  <div className="grid grid-cols-12 gap-2 items-center">
+                    <div className="col-span-4 text-xs font-semibold text-on-surface-variant truncate">Habit</div>
+                    <div className="col-span-8 grid grid-cols-7 gap-1.5 text-center text-xs font-bold text-on-surface-variant">
+                      {weeklyData.map((d) => {
+                        const dayIdx = new Date(d.log_date).getDay();
+                        return <span key={d.log_date}>{['Su','M','Tu','W','Th','F','Sa'][dayIdx]}</span>;
+                      })}
+                    </div>
+                  </div>
+                  
+                  {/* Habit Heatmap Rows */}
+                  {Object.values(
+                    weeklyGrid.reduce((acc, cell) => {
+                      if (!acc[cell.habit_id]) {
+                        acc[cell.habit_id] = { id: cell.habit_id, name: cell.habit_name, icon: cell.habit_icon, cells: [] };
+                      }
+                      acc[cell.habit_id].cells.push(cell);
+                      return acc;
+                    }, {})
+                  ).map((h) => (
+                    <div key={h.id} className="grid grid-cols-12 gap-2 items-center">
+                      <div className="col-span-4 flex items-center gap-2 text-sm font-medium text-on-surface truncate">
+                        <div className="w-6 h-6 rounded-full bg-secondary-fixed-dim/30 flex items-center justify-center flex-shrink-0">
+                          <span className="material-symbols-outlined text-[14px] text-primary">{h.icon}</span>
+                        </div>
+                        <span className="truncate">{h.name}</span>
+                      </div>
+                      <div className="col-span-8 grid grid-cols-7 gap-1.5">
+                        {h.cells.map((cell) => {
+                          const isCellToday = cell.log_date === date;
+                          return (
+                            <button
+                              key={cell.log_date}
+                              onClick={() => toggleHeatmapCell(cell.habit_id, cell.log_date, cell.completed)}
+                              title={`${h.name}: ${cell.completed ? 'Done' : 'Not done'} on ${cell.log_date}`}
+                              className={`aspect-square rounded-md transition-all duration-200 flex items-center justify-center cursor-pointer border ${
+                                cell.completed
+                                  ? 'bg-primary border-primary text-on-primary shadow-sm hover:opacity-90'
+                                  : 'bg-surface-container border-outline-variant/30 hover:bg-surface-container-high'
+                              } ${isCellToday ? 'ring-2 ring-primary ring-offset-2' : ''}`}
+                            >
+                              {cell.completed && (
+                                <span className="material-symbols-outlined text-[10px] font-bold">check</span>
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Quick Stats */}
