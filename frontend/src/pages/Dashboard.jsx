@@ -221,14 +221,17 @@ export default function Dashboard() {
                                 <span className="md:hidden text-[10px] font-bold text-on-surface-variant">{dayName}</span>
                                 <button
                                   onClick={() => toggleHeatmapCell(cell.habit_id, cell.log_date, cell.completed)}
+                                  disabled={togglingCell !== null}
                                   title={`${h.name}: ${cell.completed ? 'Done' : 'Not done'} on ${cell.log_date}`}
                                   className={`w-full aspect-square rounded-lg transition-all duration-200 flex items-center justify-center cursor-pointer border ${
                                     cell.completed
                                       ? 'bg-primary border-primary text-on-primary shadow-sm hover:scale-95'
                                       : 'bg-surface-container border-outline-variant/30 hover:bg-surface-container-high'
-                                  } ${isCellToday ? 'ring-2 ring-primary ring-offset-2' : ''}`}
+                                  } ${isCellToday ? 'ring-2 ring-primary ring-offset-2' : ''} disabled:opacity-50`}
                                 >
-                                  {cell.completed ? (
+                                  {togglingCell === `${cell.habit_id}-${cell.log_date}` ? (
+                                    <span className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                                  ) : cell.completed ? (
                                     <span className="material-symbols-outlined text-[12px] md:text-[10px] font-bold">check</span>
                                   ) : (
                                     <span className="md:hidden text-[10px] text-on-surface-variant/20 font-bold">○</span>
