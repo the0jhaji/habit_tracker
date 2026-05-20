@@ -9,7 +9,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // ── Middleware ───────────────────────────────────────────────────────────────
-app.use(cors({ origin: process.env.CORS_ORIGIN || 'http://localhost:5173' }));
+const allowedOrigins = process.env.CORS_ORIGIN 
+  ? process.env.CORS_ORIGIN.split(',')
+  : ['http://localhost:5173', 'https://habit-tracker-smoky-kappa.vercel.app'];
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 // Request logger
