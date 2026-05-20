@@ -35,9 +35,11 @@ const frontendDistPath = path.join(__dirname, '../frontend/dist');
 app.use(express.static(frontendDistPath));
 
 // Catch-all route to serve the React app, ignoring API routes
-app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api')) return next();
-  res.sendFile(path.join(frontendDistPath, 'index.html'));
+app.use((req, res, next) => {
+  if (req.method === 'GET' && !req.path.startsWith('/api')) {
+    return res.sendFile(path.join(frontendDistPath, 'index.html'));
+  }
+  next();
 });
 
 // 404 handler for API routes
