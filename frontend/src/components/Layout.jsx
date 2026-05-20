@@ -46,6 +46,7 @@ export default function Layout() {
     { name: 'Dashboard', path: '/', icon: 'dashboard' },
     { name: 'Habit Catalog', path: '/catalog', icon: 'explore', short: 'Explore' },
     { name: 'Analytics', path: '/analytics', icon: 'leaderboard', short: 'Stats' },
+    { name: 'Core AI', path: '/assistant', icon: 'smart_toy', short: 'AI' },
     { name: 'Settings', path: '/settings', icon: 'settings', short: 'Settings' }
   ];
 
